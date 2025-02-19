@@ -10,7 +10,7 @@ LumX is a modular iOS app displaying high-quality images powered by the Unsplash
 
 - Concurrency: Combine + async/await (Swift Concurrency)
 
-- Networking: [Alamofire](https://github.com/Alamofire/Alamofire) + [Moya](https://github.com/Moya/Moya)
+- Networking: URLSession
 
 - Dependency Injection: [Factory](https://github.com/hmlongco/Factory)
 
