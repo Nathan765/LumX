@@ -37,19 +37,18 @@ class ImageGridViewController: UIViewController {
         let layout = UICollectionViewCompositionalLayout { _, _ -> NSCollectionLayoutSection? in
             let itemSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(0.5),
-                heightDimension: .absolute(180) // Hauteur fixe
+                heightDimension: .absolute(180)
             )
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+            item.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 1)
             
             let groupSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(180) // Même hauteur pour tous
+                heightDimension: .absolute(180)
             )
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item]) // 2 colonnes
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
             
             let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
             
             return section
         }
@@ -59,6 +58,7 @@ class ImageGridViewController: UIViewController {
         collectionView.backgroundColor = .systemBackground
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.reuseIdentifier)
         collectionView.delegate = self
+        collectionView.showsVerticalScrollIndicator = false
         
         view.addSubview(collectionView)
         
