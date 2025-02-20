@@ -6,8 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D885A6772D6793AC009A9714 /* NetworkingModule in Resources */ = {isa = PBXBuildFile; fileRef = D885A6762D6793AC009A9714 /* NetworkingModule */; };
+		D8ED54AB2D6793F0005FB31E /* NetworkingModule in Frameworks */ = {isa = PBXBuildFile; productRef = D8ED54AA2D6793F0005FB31E /* NetworkingModule */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		D885A0F92D662DC4009A9714 /* LumX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LumX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D885A6762D6793AC009A9714 /* NetworkingModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkingModule; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -36,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8ED54AB2D6793F0005FB31E /* NetworkingModule in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +54,8 @@
 			children = (
 				D885A0FB2D662DC4009A9714 /* LumX */,
 				D885A0FA2D662DC4009A9714 /* Products */,
+				D885A6762D6793AC009A9714 /* NetworkingModule */,
+				D8ED54A92D6793F0005FB31E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +65,13 @@
 				D885A0F92D662DC4009A9714 /* LumX.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D8ED54A92D6793F0005FB31E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -78,6 +94,7 @@
 			);
 			name = LumX;
 			packageProductDependencies = (
+				D8ED54AA2D6793F0005FB31E /* NetworkingModule */,
 			);
 			productName = LumX;
 			productReference = D885A0F92D662DC4009A9714 /* LumX.app */;
@@ -122,6 +139,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D885A6772D6793AC009A9714 /* NetworkingModule in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +363,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D8ED54AA2D6793F0005FB31E /* NetworkingModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkingModule;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D885A0F12D662DC4009A9714 /* Project object */;
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NetworkingModule
 
 class ImageGridCoordinator: Coordinator {
     var navigationController: UINavigationController

@@ -7,14 +7,14 @@
 
 import Foundation
 
-class UnsplashService {
+public class UnsplashService {
     private let session: URLSession
     
-    init(session: URLSession = .shared) {
+    public init(session: URLSession = .shared) {
         self.session = session
     }
     
-    func fetchPhotos(page: Int = 1, perPage: Int = 10, completion: @escaping (Result<[Photo], NetworkError>) -> Void) {
+    public func fetchPhotos(page: Int = 1, perPage: Int = 10, completion: @escaping (Result<[Photo], NetworkError>) -> Void) {
         let request = UnsplashEndpoint.listPhotos(page: page, perPage: perPage).request
         
         session.dataTask(with: request) { data, response, error in

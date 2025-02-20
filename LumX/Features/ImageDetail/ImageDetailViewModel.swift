@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import NetworkingModule
 
 class ImageDetailViewModel: ObservableObject {
     @Published var photoURL: String

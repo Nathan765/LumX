@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NetworkingModule
 
 class ImageDetailCoordinator: Coordinator {
     var navigationController: UINavigationController
