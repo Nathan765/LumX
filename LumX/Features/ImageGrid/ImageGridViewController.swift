@@ -27,10 +27,22 @@ class ImageGridViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNavigationBar()
         setupCollectionView()
         setupDataSource()
         setupBindings()
         viewModel.fetchImages()
+    }
+    
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.isTranslucent = false
+        
+        let titleLabel = UILabel()
+        titleLabel.text = "LumX"
+        titleLabel.textColor = .white
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        navigationItem.titleView = titleLabel
     }
     
     private func setupCollectionView() {
