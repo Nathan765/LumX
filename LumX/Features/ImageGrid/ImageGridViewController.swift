@@ -99,7 +99,7 @@ class ImageGridViewController: UIViewController {
     private func updateCollectionView() {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Photo>()
         snapshot.appendSections([0])
-        snapshot.appendItems(viewModel.photos)
+        snapshot.appendItems(viewModel.photos, toSection: 0)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
 }
@@ -109,5 +109,12 @@ extension ImageGridViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedPhoto = viewModel.photos[indexPath.item]
         coordinator.showDetail(for: selectedPhoto)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let thresholdIndex = viewModel.photos.count - 12
+        if indexPath.item == thresholdIndex {
+            viewModel.fetchImages()
+        }
     }
 }

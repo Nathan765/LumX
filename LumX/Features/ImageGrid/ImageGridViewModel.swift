@@ -10,6 +10,7 @@ import Foundation
 class ImageGridViewModel {
     private let service: UnsplashService
     private var currentPage = 1
+    private var isLoading = false
     var photos: [Photo] = []
     var onImagesUpdated: (() -> Void)?
 
@@ -18,12 +19,24 @@ class ImageGridViewModel {
     }
     
     func fetchImages() {
-        service.fetchPhotos(page: currentPage, perPage: 20) { [weak self] result in
+        guard !isLoading else { return }
+        isLoading = true
+        
+        service.fetchPhotos(page: currentPage, perPage: 30) { [weak self] result in
+            guard let self = self else { return }
+            self.isLoading = false
+
             switch result {
             case .success(let newPhotos):
-                self?.photos.append(contentsOf: newPhotos)
-                self?.onImagesUpdated?()
-                self?.currentPage += 1
+                let uniquePhotos = newPhotos.filter { newPhoto in
+                    !self.photos.contains(where: { $0.id == newPhoto.id })
+                }
+                
+                guard !uniquePhotos.isEmpty else { return }
+                
+                self.photos.append(contentsOf: uniquePhotos)
+                self.currentPage += 1
+                self.onImagesUpdated?()
             case .failure(let error):
                 print("❌ Error fetching images: \(error)")
             }
