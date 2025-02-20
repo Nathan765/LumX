@@ -16,28 +16,7 @@ class AppCoordinator: Coordinator {
     }
 
     func start() {
-        let tabBarController = TabBarScene()
-
-        let imageGridNav = UINavigationController()
-        imageGridCoordinator = ImageGridCoordinator(navigationController: imageGridNav)
+        imageGridCoordinator = ImageGridCoordinator(navigationController: navigationController)
         imageGridCoordinator?.start()
-
-        tabBarController.setViewControllers([
-            imageGridNav,
-            createPlaceholderNavController(title: "Recherche", image: "magnifyingglass"),
-            createPlaceholderNavController(title: "Favoris", image: "star"),
-            createPlaceholderNavController(title: "Compte", image: "person")
-        ], animated: false)
-
-        navigationController.setViewControllers([tabBarController], animated: false)
-    }
-
-    private func createPlaceholderNavController(title: String, image: String) -> UINavigationController {
-        let vc = UIViewController()
-        vc.view.backgroundColor = .systemBackground
-        vc.navigationItem.title = title
-        let navController = UINavigationController(rootViewController: vc)
-        navController.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: image), selectedImage: UIImage(systemName: "\(image).fill"))
-        return navController
     }
 }

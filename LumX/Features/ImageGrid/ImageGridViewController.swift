@@ -27,16 +27,10 @@ class ImageGridViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
         setupCollectionView()
         setupDataSource()
         setupBindings()
         viewModel.fetchImages()
-    }
-    
-    private func setupUI() {
-        self.navigationItem.title = "Accueil"
-        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func setupCollectionView() {
