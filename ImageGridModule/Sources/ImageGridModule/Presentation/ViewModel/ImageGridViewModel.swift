@@ -8,20 +8,22 @@
 import Foundation
 import NetworkingModule
 
-class ImageGridViewModel {
+public class ImageGridViewModel {
     private let service: UnsplashNetworkService
     private var currentPage = 1
     private var isLoading = false
     var photos: [Photo] = []
     var onImagesUpdated: (() -> Void)?
 
-    init(service: UnsplashNetworkService = UnsplashNetworkServiceImpl()) {
+    public init(service: UnsplashNetworkService) {
         self.service = service
     }
     
-    func fetchImages() {
+    public func fetchImages() {
         guard !isLoading else { return }
         isLoading = true
+        
+        // UC
         
         service.fetchPhotos(page: currentPage, perPage: 30) { [weak self] result in
             guard let self = self else { return }
@@ -29,12 +31,13 @@ class ImageGridViewModel {
 
             switch result {
             case .success(let newPhotos):
+                                
                 let uniquePhotos = newPhotos.filter { newPhoto in
                     !self.photos.contains(where: { $0.id == newPhoto.id })
                 }
                 
                 guard !uniquePhotos.isEmpty else { return }
-                
+                                
                 self.photos.append(contentsOf: uniquePhotos)
                 self.currentPage += 1
                 self.onImagesUpdated?()

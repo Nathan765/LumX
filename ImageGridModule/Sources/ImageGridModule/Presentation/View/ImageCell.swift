@@ -11,6 +11,8 @@ import NetworkingModule
 class ImageCell: UICollectionViewCell {
     static let reuseIdentifier = "ImageCell"
     
+    private var viewModel: ImageCellViewModel?
+
     private let imageView: UIImageView = {
         let imgView = UIImageView()
         imgView.contentMode = .scaleAspectFill
@@ -18,7 +20,7 @@ class ImageCell: UICollectionViewCell {
         imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(imageView)
@@ -30,18 +32,18 @@ class ImageCell: UICollectionViewCell {
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func configure(with url: String) {
-        UnsplashNetworkServiceImpl().download(imageURL: url) { [weak self] data in
-            if let data = data, let image = UIImage(data: data) {
+
+    func configure(with viewModel: ImageCellViewModel) {
+        self.viewModel = viewModel
+        self.viewModel?.onImageUpdated = { [weak self] image in
+            DispatchQueue.main.async {
                 self?.imageView.image = image
-            } else {
-                self?.imageView.image = UIImage(systemName: "photo")
             }
         }
+        self.viewModel?.loadImage()
     }
 }

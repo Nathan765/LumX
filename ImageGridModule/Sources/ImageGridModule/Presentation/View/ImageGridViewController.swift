@@ -5,18 +5,20 @@
 //  Created by Nathan Stéphant on 19/02/2025.
 //
 
-import SwiftUI
+import UIKit
 import NetworkingModule
 
-class ImageGridViewController: UIViewController {
-    weak var coordinator: AppCoordinator?
+public class ImageGridViewController: UIViewController {
+    public weak var coordinator: ImageGridCoordinator?
     
     private var collectionView: UICollectionView!
     private let viewModel: ImageGridViewModel
     private var dataSource: UICollectionViewDiffableDataSource<Int, Photo>!
+    private let service: UnsplashNetworkService
     
-    init(viewModel: ImageGridViewModel) {
+    public init(viewModel: ImageGridViewModel, service: UnsplashNetworkService) {
         self.viewModel = viewModel
+        self.service = service
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -24,7 +26,7 @@ class ImageGridViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationBar()
@@ -87,10 +89,11 @@ class ImageGridViewController: UIViewController {
             collectionView: collectionView
         ) { (collectionView, indexPath, photo) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseIdentifier, for: indexPath) as! ImageCell
-            cell.configure(with: photo.urls.small)
+            let viewModel = ImageCellViewModel(photo: photo, service: self.service)
+            cell.configure(with: viewModel)
             return cell
         }
-        
+
         collectionView.dataSource = dataSource
     }
     
@@ -112,12 +115,12 @@ class ImageGridViewController: UIViewController {
 
 // MARK: - UICollectionView Delegate
 extension ImageGridViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedPhoto = viewModel.photos[indexPath.item]
         coordinator?.showDetail(for: selectedPhoto)
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let thresholdIndex = viewModel.photos.count - 12
         if indexPath.item == thresholdIndex {
             viewModel.fetchImages()

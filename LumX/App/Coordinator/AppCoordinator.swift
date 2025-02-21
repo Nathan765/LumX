@@ -8,7 +8,9 @@
 import SwiftUI
 import NetworkingModule
 import ImageDetailModule
-// import ImageGridModule
+import ImageGridModule
+
+extension AppCoordinator: ImageGridCoordinator {}
 
 class AppCoordinator: Coordinator {
     var navigationController: UINavigationController
@@ -23,8 +25,9 @@ class AppCoordinator: Coordinator {
     }
     
     private func createImageGridViewController() -> ImageGridViewController {
-        let viewModel = ImageGridViewModel()
-        let vc = ImageGridViewController(viewModel: viewModel)
+        let service = UnsplashNetworkServiceImpl()
+        let viewModel = ImageGridViewModel(service: service)
+        let vc = ImageGridViewController(viewModel: viewModel, service: service)
         vc.coordinator = self
         return vc
     }
