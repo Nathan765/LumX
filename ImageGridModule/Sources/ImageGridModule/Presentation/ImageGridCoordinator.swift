@@ -6,5 +6,5 @@
 //
 
 public protocol ImageGridCoordinator: AnyObject {
-    func showDetail(for photo: PhotoUIModel)
+    func showDetail(for photoId: String)
 }

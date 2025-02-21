@@ -5,6 +5,7 @@
 //  Created by Nathan Stéphant on 19/02/2025.
 //
 
+import Factory
 import SwiftUI
 import NetworkingModule
 import ImageDetailModule
@@ -13,6 +14,7 @@ import ImageGridModule
 extension AppCoordinator: ImageGridCoordinator {}
 
 class AppCoordinator: Coordinator {
+    @Injected(\.unsplashNetworkService) private var service
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -24,23 +26,21 @@ class AppCoordinator: Coordinator {
         navigationController.setViewControllers([imageGridVC], animated: false)
     }
     
-    private func createImageGridViewController() -> ImageGridViewController {
-        let service = UnsplashNetworkServiceImpl()
-        let photoRemoteDataSource = PhotoRemoteDataSourceImpl(unsplashNetworkService: service)
-        let photoRepository = PhotoRepositoryImpl(photoRemoteDataSource: photoRemoteDataSource)
-        let photoListUseCase = PhotoListUseCaseImpl(photoRepository: photoRepository)
-        
-        let viewModel = ImageGridViewModel(photoListUseCase: photoListUseCase)
-        
-        let vc = ImageGridViewController(viewModel: viewModel, service: service)
+    private func createImageGridViewController() -> ImageGridViewController {        
+        let viewModel = Container.shared.imageGridViewModel()
+        let vc = ImageGridViewController(viewModel: viewModel)
         vc.coordinator = self
         return vc
     }
     
-    func showDetail(for photo: PhotoUIModel) {
-//        let viewModel = ImageDetailViewModel(photo: photo)
-//        let detailView = ImageDetailView(viewModel: viewModel)
-//        let hostingController = UIHostingController(rootView: detailView)
-//        navigationController.pushViewController(hostingController, animated: true)
+    func showDetail(for photoId: String) {
+        let service = UnsplashNetworkServiceImpl()
+        let photoDetailRemoteDataSource = PhotoDetailRemoteDataSourceImpl(unsplashNetworkService: service)
+        let photoDetailRepository = PhotoDetailRepositoryImpl(photoDetailRemoteDataSource: photoDetailRemoteDataSource)
+        let photoDetailUseCase = PhotoDetailUseCaseImpl(photoDetailRepository: photoDetailRepository)
+        let viewModel = ImageDetailViewModel(photoDetailUseCase: photoDetailUseCase, photoId: photoId)
+        let detailView = ImageDetailView(viewModel: viewModel)
+        let hostingController = UIHostingController(rootView: detailView)
+        navigationController.pushViewController(hostingController, animated: true)
     }
 }

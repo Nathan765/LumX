@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D801287C2D6894AB00CE58EF /* ImageGridModule in Frameworks */ = {isa = PBXBuildFile; productRef = D801287B2D6894AB00CE58EF /* ImageGridModule */; };
-		D86E26862D68802700AE4C1B /* ImageDetailModule in Frameworks */ = {isa = PBXBuildFile; productRef = D86E26852D68802700AE4C1B /* ImageDetailModule */; };
+		D81883DB2D68D97000FB7CC8 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = D81883DA2D68D97000FB7CC8 /* Factory */; };
 		D885A6772D6793AC009A9714 /* NetworkingModule in Resources */ = {isa = PBXBuildFile; fileRef = D885A6762D6793AC009A9714 /* NetworkingModule */; };
-		D8ED54AB2D6793F0005FB31E /* NetworkingModule in Frameworks */ = {isa = PBXBuildFile; productRef = D8ED54AA2D6793F0005FB31E /* NetworkingModule */; };
+		D89BEBFD2D68D40000CFFEFC /* ImageDetailModule in Frameworks */ = {isa = PBXBuildFile; productRef = D89BEBFC2D68D40000CFFEFC /* ImageDetailModule */; };
+		D89BEBFF2D68D40000CFFEFC /* ImageGridModule in Frameworks */ = {isa = PBXBuildFile; productRef = D89BEBFE2D68D40000CFFEFC /* ImageGridModule */; };
+		D89BEC012D68D40000CFFEFC /* NetworkingModule in Frameworks */ = {isa = PBXBuildFile; productRef = D89BEC002D68D40000CFFEFC /* NetworkingModule */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,9 +47,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D801287C2D6894AB00CE58EF /* ImageGridModule in Frameworks */,
-				D86E26862D68802700AE4C1B /* ImageDetailModule in Frameworks */,
-				D8ED54AB2D6793F0005FB31E /* NetworkingModule in Frameworks */,
+				D89BEBFF2D68D40000CFFEFC /* ImageGridModule in Frameworks */,
+				D89BEBFD2D68D40000CFFEFC /* ImageDetailModule in Frameworks */,
+				D89BEC012D68D40000CFFEFC /* NetworkingModule in Frameworks */,
+				D81883DB2D68D97000FB7CC8 /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,11 +60,12 @@
 		D885A0F02D662DC4009A9714 = {
 			isa = PBXGroup;
 			children = (
-				D885A0FB2D662DC4009A9714 /* LumX */,
-				D885A0FA2D662DC4009A9714 /* Products */,
 				D801287A2D68938F00CE58EF /* ImageGridModule */,
 				D86E26842D687FD600AE4C1B /* ImageDetailModule */,
 				D885A6762D6793AC009A9714 /* NetworkingModule */,
+				D885A0FB2D662DC4009A9714 /* LumX */,
+				D89BEBFB2D68D40000CFFEFC /* Frameworks */,
+				D885A0FA2D662DC4009A9714 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +75,13 @@
 				D885A0F92D662DC4009A9714 /* LumX.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D89BEBFB2D68D40000CFFEFC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,9 +104,10 @@
 			);
 			name = LumX;
 			packageProductDependencies = (
-				D8ED54AA2D6793F0005FB31E /* NetworkingModule */,
-				D86E26852D68802700AE4C1B /* ImageDetailModule */,
-				D801287B2D6894AB00CE58EF /* ImageGridModule */,
+				D89BEBFC2D68D40000CFFEFC /* ImageDetailModule */,
+				D89BEBFE2D68D40000CFFEFC /* ImageGridModule */,
+				D89BEC002D68D40000CFFEFC /* NetworkingModule */,
+				D81883DA2D68D97000FB7CC8 /* Factory */,
 			);
 			productName = LumX;
 			productReference = D885A0F92D662DC4009A9714 /* LumX.app */;
@@ -127,6 +138,7 @@
 			mainGroup = D885A0F02D662DC4009A9714;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				D81883D92D68D96F00FB7CC8 /* XCRemoteSwiftPackageReference "Factory" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D885A0FA2D662DC4009A9714 /* Products */;
@@ -368,16 +380,32 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCSwiftPackageProductDependency section */
-		D801287B2D6894AB00CE58EF /* ImageGridModule */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ImageGridModule;
+/* Begin XCRemoteSwiftPackageReference section */
+		D81883D92D68D96F00FB7CC8 /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.3;
+			};
 		};
-		D86E26852D68802700AE4C1B /* ImageDetailModule */ = {
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D81883DA2D68D97000FB7CC8 /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D81883D92D68D96F00FB7CC8 /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
+		};
+		D89BEBFC2D68D40000CFFEFC /* ImageDetailModule */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ImageDetailModule;
 		};
-		D8ED54AA2D6793F0005FB31E /* NetworkingModule */ = {
+		D89BEBFE2D68D40000CFFEFC /* ImageGridModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ImageGridModule;
+		};
+		D89BEC002D68D40000CFFEFC /* NetworkingModule */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NetworkingModule;
 		};

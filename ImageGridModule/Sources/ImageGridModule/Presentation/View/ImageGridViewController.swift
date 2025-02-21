@@ -15,12 +15,10 @@ public class ImageGridViewController: UIViewController {
     private var collectionView: UICollectionView!
     private let viewModel: ImageGridViewModel
     private var dataSource: UICollectionViewDiffableDataSource<Int, PhotoUIModel>!
-    private let service: UnsplashNetworkService
     private var cancellables = Set<AnyCancellable>()
     
-    public init(viewModel: ImageGridViewModel, service: UnsplashNetworkService) {
+    public init(viewModel: ImageGridViewModel) {
         self.viewModel = viewModel
-        self.service = service
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -92,7 +90,7 @@ public class ImageGridViewController: UIViewController {
             collectionView: collectionView
         ) { (collectionView, indexPath, photo) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseIdentifier, for: indexPath) as! ImageCell
-            let viewModel = ImageCellViewModel(photo: photo, service: self.service)
+            let viewModel = ImageCellViewModel(photo: photo, service: UnsplashNetworkServiceImpl()) // TODO: DI
             cell.configure(with: viewModel)
             return cell
         }
@@ -134,8 +132,8 @@ public class ImageGridViewController: UIViewController {
 // MARK: - UICollectionView Delegate
 extension ImageGridViewController: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedPhoto = viewModel.photos[indexPath.item]
-        coordinator?.showDetail(for: selectedPhoto)
+        let selectedPhotoID = viewModel.photos[indexPath.item].id
+        coordinator?.showDetail(for: selectedPhotoID)
     }
     
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
