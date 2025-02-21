@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D86E267B2D6877A500AE4C1B /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = D86E267A2D6877A500AE4C1B /* Moya */; };
 		D86E26862D68802700AE4C1B /* ImageDetailModule in Frameworks */ = {isa = PBXBuildFile; productRef = D86E26852D68802700AE4C1B /* ImageDetailModule */; };
 		D885A6772D6793AC009A9714 /* NetworkingModule in Resources */ = {isa = PBXBuildFile; fileRef = D885A6762D6793AC009A9714 /* NetworkingModule */; };
 		D8ED54AB2D6793F0005FB31E /* NetworkingModule in Frameworks */ = {isa = PBXBuildFile; productRef = D8ED54AA2D6793F0005FB31E /* NetworkingModule */; };
@@ -46,7 +45,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D86E26862D68802700AE4C1B /* ImageDetailModule in Frameworks */,
-				D86E267B2D6877A500AE4C1B /* Moya in Frameworks */,
 				D8ED54AB2D6793F0005FB31E /* NetworkingModule in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,7 +99,6 @@
 			name = LumX;
 			packageProductDependencies = (
 				D8ED54AA2D6793F0005FB31E /* NetworkingModule */,
-				D86E267A2D6877A500AE4C1B /* Moya */,
 				D86E26852D68802700AE4C1B /* ImageDetailModule */,
 			);
 			productName = LumX;
@@ -133,7 +130,6 @@
 			mainGroup = D885A0F02D662DC4009A9714;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				D86E26792D6877A500AE4C1B /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D885A0FA2D662DC4009A9714 /* Products */;
@@ -375,23 +371,7 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		D86E26792D6877A500AE4C1B /* XCRemoteSwiftPackageReference "Moya" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Moya/Moya";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 15.0.3;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		D86E267A2D6877A500AE4C1B /* Moya */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D86E26792D6877A500AE4C1B /* XCRemoteSwiftPackageReference "Moya" */;
-			productName = Moya;
-		};
 		D86E26852D68802700AE4C1B /* ImageDetailModule */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ImageDetailModule;
