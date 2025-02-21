@@ -13,7 +13,7 @@ public class ImageDetailViewModel: ObservableObject {
     @Published public var descriptionText: String
     @Published public var name: String
     
-    public init(photo: Photo) {
+    public init(photo: PhotoUIModel) {
         self.photoURL = photo.urls.full
         self.descriptionText = photo.description ?? "no description"
         self.name = photo.user.name ?? "Anonymous"

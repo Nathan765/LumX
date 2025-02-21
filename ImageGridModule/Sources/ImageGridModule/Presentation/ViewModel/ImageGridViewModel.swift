@@ -6,44 +6,47 @@
 //
 
 import Foundation
-import NetworkingModule
+import Combine
 
 public class ImageGridViewModel {
-    private let service: UnsplashNetworkService
+    private let photoListUseCase: any PhotoListUseCase
     private var currentPage = 1
     private var isLoading = false
-    var photos: [Photo] = []
-    var onImagesUpdated: (() -> Void)?
-
-    public init(service: UnsplashNetworkService) {
-        self.service = service
+    
+    @Published public private(set) var photos: [PhotoUIModel] = []
+    @Published public private(set) var errorMessage: String?
+    
+    private var reloadSubject = PassthroughSubject<Void, Never>()
+    public var reloadPublisher: AnyPublisher<Void, Never> {
+        reloadSubject.eraseToAnyPublisher()
     }
     
-    public func fetchImages() {
+    private var cancellables = Set<AnyCancellable>()
+
+    public init(photoListUseCase: PhotoListUseCase) {
+        self.photoListUseCase = photoListUseCase
+    }
+    
+    public func fetchImages() async {
         guard !isLoading else { return }
         isLoading = true
         
-        // UC
-        
-        service.fetchPhotos(page: currentPage, perPage: 30) { [weak self] result in
-            guard let self = self else { return }
-            self.isLoading = false
-
-            switch result {
-            case .success(let newPhotos):
-                                
-                let uniquePhotos = newPhotos.filter { newPhoto in
-                    !self.photos.contains(where: { $0.id == newPhoto.id })
-                }
-                
-                guard !uniquePhotos.isEmpty else { return }
-                                
+        do {
+            let newPhotos = try await photoListUseCase.execute(page: currentPage, perPage: 30)
+            
+            let uniquePhotos = newPhotos.filter { newPhoto in
+                !self.photos.contains(where: { $0.id == newPhoto.id })
+            }.map { PhotoUIModel(entity: $0) }
+            
+            if !uniquePhotos.isEmpty {
                 self.photos.append(contentsOf: uniquePhotos)
                 self.currentPage += 1
-                self.onImagesUpdated?()
-            case .failure(let error):
-                print("❌ Error fetching images: \(error)")
+                reloadSubject.send()
             }
+        } catch {
+            errorMessage = "❌ Error fetching images: \(error.localizedDescription)"
         }
+        
+        isLoading = false
     }
 }

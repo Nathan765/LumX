@@ -26,16 +26,21 @@ class AppCoordinator: Coordinator {
     
     private func createImageGridViewController() -> ImageGridViewController {
         let service = UnsplashNetworkServiceImpl()
-        let viewModel = ImageGridViewModel(service: service)
+        let photoRemoteDataSource = PhotoRemoteDataSourceImpl(unsplashNetworkService: service)
+        let photoRepository = PhotoRepositoryImpl(photoRemoteDataSource: photoRemoteDataSource)
+        let photoListUseCase = PhotoListUseCaseImpl(photoRepository: photoRepository)
+        
+        let viewModel = ImageGridViewModel(photoListUseCase: photoListUseCase)
+        
         let vc = ImageGridViewController(viewModel: viewModel, service: service)
         vc.coordinator = self
         return vc
     }
     
-    func showDetail(for photo: Photo) {
-        let viewModel = ImageDetailViewModel(photo: photo)
-        let detailView = ImageDetailView(viewModel: viewModel)
-        let hostingController = UIHostingController(rootView: detailView)
-        navigationController.pushViewController(hostingController, animated: true)
+    func showDetail(for photo: PhotoUIModel) {
+//        let viewModel = ImageDetailViewModel(photo: photo)
+//        let detailView = ImageDetailView(viewModel: viewModel)
+//        let hostingController = UIHostingController(rootView: detailView)
+//        navigationController.pushViewController(hostingController, animated: true)
     }
 }

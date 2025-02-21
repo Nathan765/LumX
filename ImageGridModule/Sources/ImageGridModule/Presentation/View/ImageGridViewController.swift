@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 import NetworkingModule
 
 public class ImageGridViewController: UIViewController {
@@ -13,8 +14,9 @@ public class ImageGridViewController: UIViewController {
     
     private var collectionView: UICollectionView!
     private let viewModel: ImageGridViewModel
-    private var dataSource: UICollectionViewDiffableDataSource<Int, Photo>!
+    private var dataSource: UICollectionViewDiffableDataSource<Int, PhotoUIModel>!
     private let service: UnsplashNetworkService
+    private var cancellables = Set<AnyCancellable>()
     
     public init(viewModel: ImageGridViewModel, service: UnsplashNetworkService) {
         self.viewModel = viewModel
@@ -33,7 +35,8 @@ public class ImageGridViewController: UIViewController {
         setupCollectionView()
         setupDataSource()
         setupBindings()
-        viewModel.fetchImages()
+        
+        Task { await viewModel.fetchImages() }
     }
     
     private func setupNavigationBar() {
@@ -85,7 +88,7 @@ public class ImageGridViewController: UIViewController {
     }
     
     private func setupDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Int, Photo>(
+        dataSource = UICollectionViewDiffableDataSource<Int, PhotoUIModel>(
             collectionView: collectionView
         ) { (collectionView, indexPath, photo) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseIdentifier, for: indexPath) as! ImageCell
@@ -98,18 +101,33 @@ public class ImageGridViewController: UIViewController {
     }
     
     private func setupBindings() {
-        viewModel.onImagesUpdated = { [weak self] in
-            DispatchQueue.main.async {
+        viewModel.reloadPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
                 self?.updateCollectionView()
             }
-        }
+            .store(in: &cancellables)
+        
+        viewModel.$errorMessage
+            .compactMap { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] errorMessage in
+                self?.showErrorAlert(message: errorMessage)
+            }
+            .store(in: &cancellables)
     }
 
     private func updateCollectionView() {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Photo>()
+        var snapshot = NSDiffableDataSourceSnapshot<Int, PhotoUIModel>()
         snapshot.appendSections([0])
         snapshot.appendItems(viewModel.photos, toSection: 0)
         dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    private func showErrorAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 }
 
@@ -123,7 +141,7 @@ extension ImageGridViewController: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let thresholdIndex = viewModel.photos.count - 12
         if indexPath.item == thresholdIndex {
-            viewModel.fetchImages()
+            Task { await viewModel.fetchImages() }
         }
     }
 }
