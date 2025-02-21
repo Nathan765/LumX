@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct PhotoURLs: Codable {
+public struct PhotoURLs: Decodable {
     public let raw: String
     public let full: String
     public let regular: String

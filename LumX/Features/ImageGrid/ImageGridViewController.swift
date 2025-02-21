@@ -9,15 +9,14 @@ import SwiftUI
 import NetworkingModule
 
 class ImageGridViewController: UIViewController {
+    weak var coordinator: AppCoordinator?
     
     private var collectionView: UICollectionView!
     private let viewModel: ImageGridViewModel
-    private let coordinator: ImageGridCoordinator
     private var dataSource: UICollectionViewDiffableDataSource<Int, Photo>!
     
-    init(viewModel: ImageGridViewModel, coordinator: ImageGridCoordinator) {
+    init(viewModel: ImageGridViewModel) {
         self.viewModel = viewModel
-        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -115,7 +114,7 @@ class ImageGridViewController: UIViewController {
 extension ImageGridViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedPhoto = viewModel.photos[indexPath.item]
-        coordinator.showDetail(for: selectedPhoto)
+        coordinator?.showDetail(for: selectedPhoto)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

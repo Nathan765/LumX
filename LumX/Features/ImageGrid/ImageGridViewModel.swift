@@ -9,13 +9,13 @@ import Foundation
 import NetworkingModule
 
 class ImageGridViewModel {
-    private let service: UnsplashService
+    private let service: UnsplashNetworkService
     private var currentPage = 1
     private var isLoading = false
     var photos: [Photo] = []
     var onImagesUpdated: (() -> Void)?
 
-    init(service: UnsplashService = UnsplashService()) {
+    init(service: UnsplashNetworkService = UnsplashNetworkServiceImpl()) {
         self.service = service
     }
     
