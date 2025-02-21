@@ -9,7 +9,7 @@ import Factory
 import NetworkingModule
 import ImageGridModule
 
-extension Container {
+extension Container { // WIP rework
     var unsplashNetworkService: Factory<UnsplashNetworkService> {
         self { UnsplashNetworkServiceImpl() }
             .shared

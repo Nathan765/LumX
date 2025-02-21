@@ -33,7 +33,7 @@ class AppCoordinator: Coordinator {
         return vc
     }
     
-    func showDetail(for photoId: String) {
+    func showDetail(for photoId: String) { // TODO: Factory --> DI
         let service = UnsplashNetworkServiceImpl()
         let photoDetailRemoteDataSource = PhotoDetailRemoteDataSourceImpl(unsplashNetworkService: service)
         let photoDetailRepository = PhotoDetailRepositoryImpl(photoDetailRemoteDataSource: photoDetailRemoteDataSource)

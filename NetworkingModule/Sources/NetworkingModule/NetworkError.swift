@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum NetworkError: Error {
+public enum NetworkError: Error { // WIP
     case requestFailed(Error)
     case invalidResponse
     case noData
