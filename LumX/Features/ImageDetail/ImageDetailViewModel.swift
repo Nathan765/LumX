@@ -8,12 +8,14 @@
 import Foundation
 import NetworkingModule
 
-class ImageDetailViewModel: ObservableObject {
-    @Published var photoURL: String
-    @Published var descriptionText: String
+public class ImageDetailViewModel: ObservableObject {
+    @Published public var photoURL: String
+    @Published public var descriptionText: String
+    @Published public var name: String
     
-    init(photo: Photo) {
+    public init(photo: Photo) {
         self.photoURL = photo.urls.full
-        self.descriptionText = photo.description ?? "No description"
+        self.descriptionText = photo.description ?? "no description"
+        self.name = "Unknown"//photo.user.username ?? "Unknown"
     }
 }

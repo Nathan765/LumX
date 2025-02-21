@@ -7,10 +7,14 @@
 
 import SwiftUI
 
-struct ImageDetailView: View {
+public struct ImageDetailView: View {
     @ObservedObject var viewModel: ImageDetailViewModel
-
-    var body: some View {
+    
+    public init(viewModel: ImageDetailViewModel) {
+        self.viewModel = viewModel
+    }
+    
+    public var body: some View {
         VStack {
             AsyncImage(url: URL(string: viewModel.photoURL)) { image in
                 image.resizable()
@@ -24,7 +28,8 @@ struct ImageDetailView: View {
                 .padding()
                 .multilineTextAlignment(.center)
         }
-        .navigationTitle("Image Details")
+        .navigationTitle(viewModel.name)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
     }
 }

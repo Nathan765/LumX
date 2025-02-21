@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NetworkingModule
 
 class ImageCell: UICollectionViewCell {
     static let reuseIdentifier = "ImageCell"
@@ -35,8 +36,12 @@ class ImageCell: UICollectionViewCell {
     }
     
     func configure(with url: String) {
-        ImageLoader.shared.loadImage(from: url) { [weak self] image in
-            self?.imageView.image = image
+        UnsplashNetworkServiceImpl().download(imageURL: url) { [weak self] data in
+            if let data = data, let image = UIImage(data: data) {
+                self?.imageView.image = image
+            } else {
+                self?.imageView.image = UIImage(systemName: "photo")
+            }
         }
     }
 }
