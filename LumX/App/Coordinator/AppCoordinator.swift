@@ -7,6 +7,8 @@
 
 import SwiftUI
 import NetworkingModule
+import ImageDetailModule
+// import ImageGridModule
 
 class AppCoordinator: Coordinator {
     var navigationController: UINavigationController

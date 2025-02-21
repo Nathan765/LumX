@@ -13,6 +13,7 @@ public struct Photo: Decodable, Hashable {
     public let height: Int
     public let description: String?
     public let urls: PhotoURLs
+    public let user: User
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)

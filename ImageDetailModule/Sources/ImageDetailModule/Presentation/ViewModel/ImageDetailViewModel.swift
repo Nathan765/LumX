@@ -16,6 +16,6 @@ public class ImageDetailViewModel: ObservableObject {
     public init(photo: Photo) {
         self.photoURL = photo.urls.full
         self.descriptionText = photo.description ?? "no description"
-        self.name = "Unknown"//photo.user.username ?? "Unknown"
+        self.name = photo.user.name ?? "Anonymous"
     }
 }

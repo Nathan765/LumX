@@ -30,6 +30,5 @@ public struct ImageDetailView: View {
         }
         .navigationTitle(viewModel.name)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
     }
 }
