@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D81883DB2D68D97000FB7CC8 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = D81883DA2D68D97000FB7CC8 /* Factory */; };
 		D81884A12D6B759900FB7CC8 /* Entities in Frameworks */ = {isa = PBXBuildFile; productRef = D81884A02D6B759900FB7CC8 /* Entities */; };
+		D81884A52D6BD5F300FB7CC8 /* DataSources in Frameworks */ = {isa = PBXBuildFile; productRef = D81884A42D6BD5F300FB7CC8 /* DataSources */; };
+		D81884A72D6BD5F300FB7CC8 /* Repositories in Frameworks */ = {isa = PBXBuildFile; productRef = D81884A62D6BD5F300FB7CC8 /* Repositories */; };
 		D885A6772D6793AC009A9714 /* NetworkingModule in Resources */ = {isa = PBXBuildFile; fileRef = D885A6762D6793AC009A9714 /* NetworkingModule */; };
 		D89BEBFD2D68D40000CFFEFC /* ImageDetailModule in Frameworks */ = {isa = PBXBuildFile; productRef = D89BEBFC2D68D40000CFFEFC /* ImageDetailModule */; };
 		D89BEBFF2D68D40000CFFEFC /* ImageGridModule in Frameworks */ = {isa = PBXBuildFile; productRef = D89BEBFE2D68D40000CFFEFC /* ImageGridModule */; };
@@ -18,6 +20,8 @@
 /* Begin PBXFileReference section */
 		D801287A2D68938F00CE58EF /* ImageGridModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ImageGridModule; sourceTree = "<group>"; };
 		D818849F2D6B675500FB7CC8 /* Entities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Entities; sourceTree = "<group>"; };
+		D81884A22D6BD5B100FB7CC8 /* DataSources */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DataSources; sourceTree = "<group>"; };
+		D81884A32D6BD5D800FB7CC8 /* Repositories */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Repositories; sourceTree = "<group>"; };
 		D86E26842D687FD600AE4C1B /* ImageDetailModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ImageDetailModule; sourceTree = "<group>"; };
 		D885A0F92D662DC4009A9714 /* LumX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LumX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D885A6762D6793AC009A9714 /* NetworkingModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkingModule; sourceTree = "<group>"; };
@@ -49,11 +53,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D81884A72D6BD5F300FB7CC8 /* Repositories in Frameworks */,
 				D89BEBFF2D68D40000CFFEFC /* ImageGridModule in Frameworks */,
 				D89BEBFD2D68D40000CFFEFC /* ImageDetailModule in Frameworks */,
 				D89BEC012D68D40000CFFEFC /* NetworkingModule in Frameworks */,
 				D81883DB2D68D97000FB7CC8 /* Factory in Frameworks */,
 				D81884A12D6B759900FB7CC8 /* Entities in Frameworks */,
+				D81884A52D6BD5F300FB7CC8 /* DataSources in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +69,8 @@
 		D885A0F02D662DC4009A9714 = {
 			isa = PBXGroup;
 			children = (
+				D81884A32D6BD5D800FB7CC8 /* Repositories */,
+				D81884A22D6BD5B100FB7CC8 /* DataSources */,
 				D818849F2D6B675500FB7CC8 /* Entities */,
 				D801287A2D68938F00CE58EF /* ImageGridModule */,
 				D86E26842D687FD600AE4C1B /* ImageDetailModule */,
@@ -113,6 +121,8 @@
 				D89BEC002D68D40000CFFEFC /* NetworkingModule */,
 				D81883DA2D68D97000FB7CC8 /* Factory */,
 				D81884A02D6B759900FB7CC8 /* Entities */,
+				D81884A42D6BD5F300FB7CC8 /* DataSources */,
+				D81884A62D6BD5F300FB7CC8 /* Repositories */,
 			);
 			productName = LumX;
 			productReference = D885A0F92D662DC4009A9714 /* LumX.app */;
@@ -405,6 +415,14 @@
 		D81884A02D6B759900FB7CC8 /* Entities */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Entities;
+		};
+		D81884A42D6BD5F300FB7CC8 /* DataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DataSources;
+		};
+		D81884A62D6BD5F300FB7CC8 /* Repositories */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Repositories;
 		};
 		D89BEBFC2D68D40000CFFEFC /* ImageDetailModule */ = {
 			isa = XCSwiftPackageProductDependency;
