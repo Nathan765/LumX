@@ -9,14 +9,18 @@ import NetworkingModule
 
 public class PhotoRemoteDataSourceImpl: PhotoRemoteDataSource {
     private let unsplashAPIService: UnsplashAPIService
+    private let photoDataMapper: PhotoDataMapper
     
     public init(
-        unsplashAPIService: UnsplashAPIService
+        unsplashAPIService: UnsplashAPIService,
+        photoDataMapper: PhotoDataMapper
     ) {
         self.unsplashAPIService = unsplashAPIService
+        self.photoDataMapper = photoDataMapper
     }
     
     public func fetchPhotoList(page: Int, perPage: Int) async throws -> [PhotoDataModel] {
-        try await unsplashAPIService.fetchPhotos(page: page, perPage: perPage).map { PhotoDataModel(from: $0) }
+        let responses = try await unsplashAPIService.fetchPhotos(page: page, perPage: perPage)
+        return photoDataMapper.map(from: responses)
     }
 }

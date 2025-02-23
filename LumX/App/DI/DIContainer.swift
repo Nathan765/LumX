@@ -20,8 +20,17 @@ extension Container { // WIP rework
             .shared
     }
     
+    var photoDataMapper: Factory<PhotoDataMapper> {
+        self { PhotoDataMapperImpl() }
+            .shared
+    }
+    
     var photoRemoteDataSource: Factory<PhotoRemoteDataSource> {
-        self { PhotoRemoteDataSourceImpl(unsplashAPIService: self.unsplashAPIService()) }
+        self { PhotoRemoteDataSourceImpl(
+            unsplashAPIService: self.unsplashAPIService(),
+            photoDataMapper: self.photoDataMapper()
+        
+        ) }
             .shared
     }
     

@@ -40,7 +40,7 @@ public struct PhotoURLsDataModel: Decodable {
     public let small: String
     public let thumb: String
     
-    public init(from urls: PhotoURLs) {
+    public init(from urls: PhotoURLsAPIResponse) {
         self.raw = urls.raw
         self.full = urls.full
         self.regular = urls.regular
@@ -52,7 +52,7 @@ public struct PhotoURLsDataModel: Decodable {
 public struct UserDataModel: Decodable {
     public let name: String?
     
-    public init(from user: User) {
+    public init(from user: UserAPIResponse) {
         self.name = user.name
     }
 }
