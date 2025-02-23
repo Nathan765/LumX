@@ -11,20 +11,19 @@
 		D81884A12D6B759900FB7CC8 /* Entities in Frameworks */ = {isa = PBXBuildFile; productRef = D81884A02D6B759900FB7CC8 /* Entities */; };
 		D81884A52D6BD5F300FB7CC8 /* DataSources in Frameworks */ = {isa = PBXBuildFile; productRef = D81884A42D6BD5F300FB7CC8 /* DataSources */; };
 		D81884A72D6BD5F300FB7CC8 /* Repositories in Frameworks */ = {isa = PBXBuildFile; productRef = D81884A62D6BD5F300FB7CC8 /* Repositories */; };
-		D885A6772D6793AC009A9714 /* NetworkingModule in Resources */ = {isa = PBXBuildFile; fileRef = D885A6762D6793AC009A9714 /* NetworkingModule */; };
 		D89BEBFD2D68D40000CFFEFC /* ImageDetailModule in Frameworks */ = {isa = PBXBuildFile; productRef = D89BEBFC2D68D40000CFFEFC /* ImageDetailModule */; };
 		D89BEBFF2D68D40000CFFEFC /* ImageGridModule in Frameworks */ = {isa = PBXBuildFile; productRef = D89BEBFE2D68D40000CFFEFC /* ImageGridModule */; };
 		D89BEC012D68D40000CFFEFC /* NetworkingModule in Frameworks */ = {isa = PBXBuildFile; productRef = D89BEC002D68D40000CFFEFC /* NetworkingModule */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D801287A2D68938F00CE58EF /* ImageGridModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ImageGridModule; sourceTree = "<group>"; };
-		D818849F2D6B675500FB7CC8 /* Entities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Entities; sourceTree = "<group>"; };
-		D81884A22D6BD5B100FB7CC8 /* DataSources */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DataSources; sourceTree = "<group>"; };
-		D81884A32D6BD5D800FB7CC8 /* Repositories */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Repositories; sourceTree = "<group>"; };
-		D86E26842D687FD600AE4C1B /* ImageDetailModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ImageDetailModule; sourceTree = "<group>"; };
+		D81884A82D6BD68600FB7CC8 /* DataSources */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DataSources; path = LocalPackages/DataSources; sourceTree = "<group>"; };
+		D81884A92D6BD69600FB7CC8 /* Entities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Entities; path = LocalPackages/Entities; sourceTree = "<group>"; };
+		D81884AA2D6BD69600FB7CC8 /* ImageDetailModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ImageDetailModule; path = LocalPackages/ImageDetailModule; sourceTree = "<group>"; };
+		D81884AB2D6BD69600FB7CC8 /* ImageGridModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ImageGridModule; path = LocalPackages/ImageGridModule; sourceTree = "<group>"; };
+		D81884AC2D6BD69600FB7CC8 /* NetworkingModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NetworkingModule; path = LocalPackages/NetworkingModule; sourceTree = "<group>"; };
+		D81884AD2D6BD69600FB7CC8 /* Repositories */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Repositories; path = LocalPackages/Repositories; sourceTree = "<group>"; };
 		D885A0F92D662DC4009A9714 /* LumX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LumX.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D885A6762D6793AC009A9714 /* NetworkingModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkingModule; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -69,15 +68,15 @@
 		D885A0F02D662DC4009A9714 = {
 			isa = PBXGroup;
 			children = (
-				D81884A32D6BD5D800FB7CC8 /* Repositories */,
-				D81884A22D6BD5B100FB7CC8 /* DataSources */,
-				D818849F2D6B675500FB7CC8 /* Entities */,
-				D801287A2D68938F00CE58EF /* ImageGridModule */,
-				D86E26842D687FD600AE4C1B /* ImageDetailModule */,
-				D885A6762D6793AC009A9714 /* NetworkingModule */,
 				D885A0FB2D662DC4009A9714 /* LumX */,
 				D89BEBFB2D68D40000CFFEFC /* Frameworks */,
 				D885A0FA2D662DC4009A9714 /* Products */,
+				D81884A82D6BD68600FB7CC8 /* DataSources */,
+				D81884A92D6BD69600FB7CC8 /* Entities */,
+				D81884AA2D6BD69600FB7CC8 /* ImageDetailModule */,
+				D81884AB2D6BD69600FB7CC8 /* ImageGridModule */,
+				D81884AC2D6BD69600FB7CC8 /* NetworkingModule */,
+				D81884AD2D6BD69600FB7CC8 /* Repositories */,
 			);
 			sourceTree = "<group>";
 		};
@@ -170,7 +169,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D885A6772D6793AC009A9714 /* NetworkingModule in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
