@@ -37,6 +37,7 @@ public class URLSessionNetworkServiceImpl: NetworkService {
         let decoder = JSONDecoder()
         do {
             let decodedResponse = try decoder.decode(D.self, from: data)
+            print("@@@ - Response: \n🔹 \(String(describing: try JSONSerialization.jsonObject(with: data, options: [])))")
             return decodedResponse
         } catch {
             throw error

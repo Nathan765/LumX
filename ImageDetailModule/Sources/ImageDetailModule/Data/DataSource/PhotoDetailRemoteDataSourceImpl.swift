@@ -8,16 +8,16 @@
 import NetworkingModule
 
 public class PhotoDetailRemoteDataSourceImpl: PhotoDetailRemoteDataSource {
-    private let unsplashNetworkService: UnsplashNetworkService
+    private let unsplashAPIService: UnsplashAPIService
     
     public init(
-        unsplashNetworkService: UnsplashNetworkService
+        unsplashAPIService: UnsplashAPIService
     ) {
-        self.unsplashNetworkService = unsplashNetworkService
+        self.unsplashAPIService = unsplashAPIService
     }
     
     public  func fetchPhotoDetail(photoId: String) async throws -> PhotoDataModel {
-        let photo = try await unsplashNetworkService.fetchPhoto(id: photoId)
+        let photo = try await unsplashAPIService.fetchPhoto(id: photoId)
         return PhotoDataModel(from: photo)
     }
 }

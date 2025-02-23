@@ -14,7 +14,6 @@ import ImageGridModule
 extension AppCoordinator: ImageGridCoordinator {}
 
 class AppCoordinator: Coordinator {
-    @Injected(\.unsplashNetworkService) private var service
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -34,8 +33,9 @@ class AppCoordinator: Coordinator {
     }
     
     func showDetail(for photoId: String) { // TODO: Factory --> DI
-        let service = UnsplashNetworkServiceImpl()
-        let photoDetailRemoteDataSource = PhotoDetailRemoteDataSourceImpl(unsplashNetworkService: service)
+        let networkService = URLSessionNetworkServiceImpl()
+        let unsplashAPIService = UnsplashAPIServiceImpl(networkService: networkService)
+        let photoDetailRemoteDataSource = PhotoDetailRemoteDataSourceImpl(unsplashAPIService: unsplashAPIService)
         let photoDetailRepository = PhotoDetailRepositoryImpl(photoDetailRemoteDataSource: photoDetailRemoteDataSource)
         let photoDetailUseCase = PhotoDetailUseCaseImpl(photoDetailRepository: photoDetailRepository)
         let viewModel = ImageDetailViewModel(photoDetailUseCase: photoDetailUseCase, photoId: photoId)

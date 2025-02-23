@@ -10,13 +10,18 @@ import NetworkingModule
 import ImageGridModule
 
 extension Container { // WIP rework
-    var unsplashNetworkService: Factory<UnsplashNetworkService> {
-        self { UnsplashNetworkServiceImpl() }
+    var networkService: Factory<NetworkService> {
+        self { URLSessionNetworkServiceImpl() }
+            .shared
+    }
+    
+    var unsplashAPIService: Factory<UnsplashAPIServiceImpl> {
+        self { UnsplashAPIServiceImpl(networkService: self.networkService()) }
             .shared
     }
     
     var photoRemoteDataSource: Factory<PhotoRemoteDataSource> {
-        self { PhotoRemoteDataSourceImpl(unsplashNetworkService: self.unsplashNetworkService()) }
+        self { PhotoRemoteDataSourceImpl(unsplashAPIService: self.unsplashAPIService()) }
             .shared
     }
     

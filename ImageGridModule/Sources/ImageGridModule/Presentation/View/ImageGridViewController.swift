@@ -90,7 +90,7 @@ public class ImageGridViewController: UIViewController {
             collectionView: collectionView
         ) { (collectionView, indexPath, photo) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseIdentifier, for: indexPath) as! ImageCell
-            let viewModel = ImageCellViewModel(photo: photo, service: UnsplashNetworkServiceImpl()) // TODO: DI
+            let viewModel = ImageCellViewModel(photo: photo, unsplashAPIService: UnsplashAPIServiceImpl(networkService: URLSessionNetworkServiceImpl())) // TODO: DI
             cell.configure(with: viewModel)
             return cell
         }

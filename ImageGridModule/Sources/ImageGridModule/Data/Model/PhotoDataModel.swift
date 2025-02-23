@@ -15,7 +15,7 @@ public struct PhotoDataModel: Hashable {
     public let urls: PhotoURLsDataModel
     public let user: UserDataModel
     
-    public init(from photo: Photo) {
+    public init(from photo: PhotoAPIResponse) {
         self.id = photo.id
         self.width = photo.width
         self.height = photo.height

@@ -10,19 +10,19 @@ import NetworkingModule
 
 class ImageCellViewModel {
     private let imageURL: String
-    private let service: UnsplashNetworkService
+    private let unsplashAPIService: UnsplashAPIService
     
     var onImageUpdated: ((UIImage?) -> Void)?
     
-    init(photo: PhotoUIModel, service: UnsplashNetworkService) {
+    init(photo: PhotoUIModel, unsplashAPIService: UnsplashAPIService) {
         self.imageURL = photo.urls.small
-        self.service = service
+        self.unsplashAPIService = unsplashAPIService
     }
     
     func loadImage() {
         Task {
             do {
-                let data = try await service.download(imageURL: imageURL)
+                let data = try await unsplashAPIService.download(imageURL: imageURL)
                 let image = UIImage(data: data) ?? UIImage(systemName: "photo")
                 
                 DispatchQueue.main.async { [weak self] in
