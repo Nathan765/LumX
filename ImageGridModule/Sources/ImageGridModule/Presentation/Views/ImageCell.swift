@@ -1,6 +1,6 @@
 //
 //  ImageCell.swift
-//  LumX
+//  ImageGridModule
 //
 //  Created by Nathan Stéphant on 19/02/2025.
 //
@@ -12,29 +12,36 @@ class ImageCell: UICollectionViewCell {
     static let reuseIdentifier = "ImageCell"
     
     private var viewModel: ImageCellViewModel?
-
-    private let imageView: UIImageView = {
+    
+    private lazy var imageView: UIImageView = {
         let imgView = UIImageView()
         imgView.contentMode = .scaleAspectFill
         imgView.clipsToBounds = true
         imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(imageView)
-        
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-        ])
+        self.setupView()
+        self.setupConstraints()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
+        contentView.addSubview(self.imageView)
+    }
+    
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            self.imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            self.imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            self.imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            self.imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+        ])
     }
 
     func configure(with viewModel: ImageCellViewModel) {

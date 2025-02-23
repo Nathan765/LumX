@@ -25,10 +25,13 @@ class AppCoordinator: Coordinator {
         navigationController.setViewControllers([imageGridVC], animated: false)
     }
     
-    private func createImageGridViewController() -> ImageGridViewController {        
-        let viewModel = Container.shared.imageGridViewModel()
-        let vc = ImageGridViewController(viewModel: viewModel)
-        vc.coordinator = self
+    private func createImageGridViewController() -> ImageGridViewController {
+        let imageGridViewModel = Container.shared.imageGridViewModel()
+        
+        let vc = ImageGridViewController(
+            coordinator: self,
+            imageGridViewModel,
+            imageCellViewModelProvider: Container.shared.imageCellViewModelProvider)
         return vc
     }
     

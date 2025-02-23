@@ -52,6 +52,15 @@ extension Container { // WIP rework
             .shared
     }
     
+    var photoDownloadUseCase: Factory<PhotoDownloadUseCase> {
+        self { PhotoDownloadUseCaseImpl(unsplashAPIService: self.unsplashAPIService()) }
+            .shared
+    }
+    
+    var imageCellViewModelProvider: (PhotoUIModel) -> ImageCellViewModel {
+        { ImageCellViewModel(photo: $0, photoDownloadUseCase: self.photoDownloadUseCase()) }
+    }
+    
     var imageGridViewModel: Factory<ImageGridViewModel> {
         self { ImageGridViewModel(photoListUseCase: self.photoListUseCase()) }
     }

@@ -23,15 +23,3 @@ public struct PhotoDataModel: Hashable {
         return lhs.id == rhs.id
     }
 }
-
-public struct PhotoURLsDataModel: Decodable {
-    public let raw: String
-    public let full: String
-    public let regular: String
-    public let small: String
-    public let thumb: String
-}
-
-public struct UserDataModel: Decodable {
-    public let name: String?
-}
