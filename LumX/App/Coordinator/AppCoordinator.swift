@@ -14,7 +14,6 @@ import ImageGridModule
 extension AppCoordinator: ImageGridCoordinator {}
 
 class AppCoordinator: Coordinator {
-    @Injected(\.unsplashNetworkService) private var service
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -26,16 +25,20 @@ class AppCoordinator: Coordinator {
         navigationController.setViewControllers([imageGridVC], animated: false)
     }
     
-    private func createImageGridViewController() -> ImageGridViewController {        
-        let viewModel = Container.shared.imageGridViewModel()
-        let vc = ImageGridViewController(viewModel: viewModel)
-        vc.coordinator = self
+    private func createImageGridViewController() -> ImageGridViewController {
+        let imageGridViewModel = Container.shared.imageGridViewModel()
+        
+        let vc = ImageGridViewController(
+            coordinator: self,
+            imageGridViewModel,
+            imageCellViewModelProvider: Container.shared.imageCellViewModelProvider)
         return vc
     }
     
     func showDetail(for photoId: String) { // TODO: Factory --> DI
-        let service = UnsplashNetworkServiceImpl()
-        let photoDetailRemoteDataSource = PhotoDetailRemoteDataSourceImpl(unsplashNetworkService: service)
+        let networkService = URLSessionNetworkServiceImpl()
+        let unsplashAPIService = UnsplashAPIServiceImpl(networkService: networkService)
+        let photoDetailRemoteDataSource = PhotoDetailRemoteDataSourceImpl(unsplashAPIService: unsplashAPIService)
         let photoDetailRepository = PhotoDetailRepositoryImpl(photoDetailRemoteDataSource: photoDetailRemoteDataSource)
         let photoDetailUseCase = PhotoDetailUseCaseImpl(photoDetailRepository: photoDetailRepository)
         let viewModel = ImageDetailViewModel(photoDetailUseCase: photoDetailUseCase, photoId: photoId)

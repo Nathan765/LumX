@@ -10,24 +10,55 @@ import NetworkingModule
 import ImageGridModule
 
 extension Container { // WIP rework
-    var unsplashNetworkService: Factory<UnsplashNetworkService> {
-        self { UnsplashNetworkServiceImpl() }
+    var networkService: Factory<NetworkService> {
+        self { URLSessionNetworkServiceImpl() }
+            .shared
+    }
+    
+    var unsplashAPIService: Factory<UnsplashAPIServiceImpl> {
+        self { UnsplashAPIServiceImpl(networkService: self.networkService()) }
+            .shared
+    }
+    
+    var photoDataMapper: Factory<PhotoDataMapper> {
+        self { PhotoDataMapperImpl() }
             .shared
     }
     
     var photoRemoteDataSource: Factory<PhotoRemoteDataSource> {
-        self { PhotoRemoteDataSourceImpl(unsplashNetworkService: self.unsplashNetworkService()) }
+        self { PhotoRemoteDataSourceImpl(
+            unsplashAPIService: self.unsplashAPIService(),
+            photoDataMapper: self.photoDataMapper()
+        
+        ) }
+            .shared
+    }
+    
+    var photoDomainMapper: Factory<PhotoDomainMapper> {
+        self { PhotoDomainMapperImpl() }
             .shared
     }
     
     var photoRepository: Factory<PhotoRepository> {
-        self { PhotoRepositoryImpl(photoRemoteDataSource: self.photoRemoteDataSource()) }
+        self { PhotoRepositoryImpl(
+            photoRemoteDataSource: self.photoRemoteDataSource(),
+            photoDomainMapper: self.photoDomainMapper()
+        ) }
             .shared
     }
     
     var photoListUseCase: Factory<PhotoListUseCase> {
         self { PhotoListUseCaseImpl(photoRepository: self.photoRepository()) }
             .shared
+    }
+    
+    var photoDownloadUseCase: Factory<PhotoDownloadUseCase> {
+        self { PhotoDownloadUseCaseImpl(unsplashAPIService: self.unsplashAPIService()) }
+            .shared
+    }
+    
+    var imageCellViewModelProvider: (PhotoUIModel) -> ImageCellViewModel {
+        { ImageCellViewModel(photo: $0, photoDownloadUseCase: self.photoDownloadUseCase()) }
     }
     
     var imageGridViewModel: Factory<ImageGridViewModel> {
