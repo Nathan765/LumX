@@ -11,9 +11,11 @@ import NetworkingModule
 import ImageDetailModule
 import ImageGridModule
 
-extension AppCoordinator: ImageGridCoordinator {}
+protocol AppCoordinatorProtocol: Coordinator, ImageGridCoordinator {
+    func showDetail(for photoId: String)
+}
 
-class AppCoordinator: Coordinator {
+class AppCoordinator: AppCoordinatorProtocol {
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -21,18 +23,15 @@ class AppCoordinator: Coordinator {
     }
 
     func start() {
-        let imageGridVC = createImageGridViewController()
-        navigationController.setViewControllers([imageGridVC], animated: false)
+        showImageGrid()
     }
     
-    private func createImageGridViewController() -> ImageGridViewController {
-        let imageGridViewModel = Container.shared.imageGridViewModel()
-        
-        let vc = ImageGridViewController(
+    private func showImageGrid() {
+        let imageGridViewController = ImageGridViewController(
             coordinator: self,
-            imageGridViewModel,
+            imageGridViewModel: Container.shared.imageGridViewModel(),
             imageCellViewModelProvider: Container.shared.imageCellViewModelProvider)
-        return vc
+        navigationController.setViewControllers([imageGridViewController], animated: false)
     }
     
     func showDetail(for photoId: String) { // TODO: Factory --> DI

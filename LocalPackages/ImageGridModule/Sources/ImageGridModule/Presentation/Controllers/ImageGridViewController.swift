@@ -22,7 +22,7 @@ public class ImageGridViewController: UIViewController {
     
     public init(
         coordinator: ImageGridCoordinator?,
-        _ imageGridViewModel: ImageGridViewModel,
+        imageGridViewModel: ImageGridViewModel,
         imageCellViewModelProvider: @escaping (PhotoUIModel) -> ImageCellViewModel
     ) {
         self.imageGridViewModel = imageGridViewModel
