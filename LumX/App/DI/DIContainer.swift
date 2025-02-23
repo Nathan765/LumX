@@ -58,10 +58,21 @@ extension Container { // WIP rework
     }
     
     var imageCellViewModelProvider: (PhotoUIModel) -> ImageCellViewModel {
-        { ImageCellViewModel(photo: $0, photoDownloadUseCase: self.photoDownloadUseCase()) }
+        { ImageCellViewModel(
+            photo: $0,
+            photoDownloadUseCase: self.photoDownloadUseCase()
+        ) }
+    }
+    
+    var photoUIMapper: Factory<PhotoUIMapper> {
+        self { PhotoUIMapperImpl() }
+            .shared
     }
     
     var imageGridViewModel: Factory<ImageGridViewModel> {
-        self { ImageGridViewModel(photoListUseCase: self.photoListUseCase()) }
+        self { ImageGridViewModel(
+            photoListUseCase: self.photoListUseCase(),
+            photoUIMapper: self.photoUIMapper()
+        ) }
     }
 }

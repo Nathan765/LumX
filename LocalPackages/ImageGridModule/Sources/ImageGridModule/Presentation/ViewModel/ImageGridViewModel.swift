@@ -10,6 +10,8 @@ import Combine
 
 public class ImageGridViewModel {
     private let photoListUseCase: any PhotoListUseCase
+    private let photoUIMapper: PhotoUIMapper
+    
     private var currentPage = 1
     private var isLoading = false
     
@@ -23,8 +25,9 @@ public class ImageGridViewModel {
     
     private var cancellables = Set<AnyCancellable>()
 
-    public init(photoListUseCase: PhotoListUseCase) {
+    public init(photoListUseCase: PhotoListUseCase, photoUIMapper: PhotoUIMapper) {
         self.photoListUseCase = photoListUseCase
+        self.photoUIMapper = photoUIMapper
     }
     
     public func fetchImages() async {
@@ -36,10 +39,12 @@ public class ImageGridViewModel {
             
             let uniquePhotos = newPhotos.filter { newPhoto in
                 !self.photos.contains(where: { $0.id == newPhoto.id })
-            }.map { PhotoUIModel(entity: $0) }
+            }
+            
+            let mappedPhotos = photoUIMapper.map(from: uniquePhotos)
             
             if !uniquePhotos.isEmpty {
-                self.photos.append(contentsOf: uniquePhotos)
+                self.photos.append(contentsOf: mappedPhotos)
                 self.currentPage += 1
                 reloadSubject.send()
             }
