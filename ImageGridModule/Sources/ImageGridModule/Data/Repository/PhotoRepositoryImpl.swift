@@ -5,18 +5,22 @@
 //  Created by Nathan Stéphant on 21/02/2025.
 //
 
-//import Entities
+import Entities
 
-public class PhotoRepositoryImpl: PhotoRepository {
+public class PhotoRepositoryImpl: PhotoRepository {    
     private let remoteDataSource: PhotoRemoteDataSource
+    private let photoDomainMapper: PhotoDomainMapper
     
     public init(
-        photoRemoteDataSource: PhotoRemoteDataSource
+        photoRemoteDataSource: PhotoRemoteDataSource,
+        photoDomainMapper: PhotoDomainMapper
     ) {
         self.remoteDataSource = photoRemoteDataSource
+        self.photoDomainMapper = photoDomainMapper
     }
     
     public func fetchPhotoList(page: Int, perPage: Int) async throws -> [PhotoEntity] {
-        try await remoteDataSource.fetchPhotoList(page: page, perPage: perPage).map { PhotoEntity(dataModel: $0) }
+        let dataModels = try await remoteDataSource.fetchPhotoList(page: page, perPage: perPage)
+        return photoDomainMapper.map(from: dataModels)
     }
 }

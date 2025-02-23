@@ -34,8 +34,16 @@ extension Container { // WIP rework
             .shared
     }
     
+    var photoDomainMapper: Factory<PhotoDomainMapper> {
+        self { PhotoDomainMapperImpl() }
+            .shared
+    }
+    
     var photoRepository: Factory<PhotoRepository> {
-        self { PhotoRepositoryImpl(photoRemoteDataSource: self.photoRemoteDataSource()) }
+        self { PhotoRepositoryImpl(
+            photoRemoteDataSource: self.photoRemoteDataSource(),
+            photoDomainMapper: self.photoDomainMapper()
+        ) }
             .shared
     }
     

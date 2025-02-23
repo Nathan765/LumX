@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Entities
 
 public struct PhotoUIModel: Hashable {
     public let id: String
