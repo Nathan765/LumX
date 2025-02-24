@@ -44,6 +44,7 @@ extension UnsplashAPI: NetworkEndpoint {
     }
     
     var headers: HTTPHeaders? {
-        return ["Authorization": "Client-ID xz5MUitr6CDevL5gRiAEXSHVeD14I4XYpSLvv6zTd2s"]
+//        return ["Authorization": "Client-ID xz5MUitr6CDevL5gRiAEXSHVeD14I4XYpSLvv6zTd2s"] // Access Key #1
+        return ["Authorization": "Client-ID tuLnfcnb0S82c-Aii9NySmfiRq7_WGozTvA_s6CpcJ4"] // Access Key #2
     }
 }
