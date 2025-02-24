@@ -6,6 +6,7 @@
 //
 
 import Entities
+import DataModule
 
 public class PhotoListUseCaseImpl: PhotoListUseCase {
     private let photoRepository: PhotoRepository

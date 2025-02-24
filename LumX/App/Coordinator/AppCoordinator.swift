@@ -35,11 +35,7 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     func showDetail(for photoId: String) { // TODO: Factory --> DI
-        let networkService = URLSessionNetworkServiceImpl()
-        let unsplashAPIService = UnsplashAPIServiceImpl(networkService: networkService)
-        let photoDetailRemoteDataSource = PhotoDetailRemoteDataSourceImpl(unsplashAPIService: unsplashAPIService)
-        let photoDetailRepository = PhotoDetailRepositoryImpl(photoDetailRemoteDataSource: photoDetailRemoteDataSource)
-        let photoDetailUseCase = PhotoDetailUseCaseImpl(photoDetailRepository: photoDetailRepository)
+        let photoDetailUseCase =  Container.shared.photoDetailUseCase()
         let viewModel = ImageDetailViewModel(photoDetailUseCase: photoDetailUseCase, photoId: photoId)
         let detailView = ImageDetailView(viewModel: viewModel)
         let hostingController = UIHostingController(rootView: detailView)

@@ -6,8 +6,10 @@
 //
 
 import Factory
+import DataModule
 import NetworkingModule
 import ImageGridModule
+import ImageDetailModule
 
 extension Container { // WIP rework
     var networkService: Factory<NetworkService> {
@@ -49,6 +51,11 @@ extension Container { // WIP rework
     
     var photoListUseCase: Factory<PhotoListUseCase> {
         self { PhotoListUseCaseImpl(photoRepository: self.photoRepository()) }
+            .shared
+    }
+    
+    var photoDetailUseCase: Factory<PhotoDetailUseCase> {
+        self { PhotoDetailUseCaseImpl(photoRepository: self.photoRepository()) }
             .shared
     }
     
