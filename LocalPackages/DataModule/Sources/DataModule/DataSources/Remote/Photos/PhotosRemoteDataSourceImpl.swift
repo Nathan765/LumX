@@ -1,5 +1,5 @@
 //
-//  PhotoRemoteDataSourceImpl.swift
+//  PhotosRemoteDataSourceImpl.swift
 //  ImageGridModule
 //
 //  Created by Nathan Stéphant on 21/02/2025.
@@ -7,7 +7,7 @@
 
 import NetworkingModule
 
-public class PhotoRemoteDataSourceImpl: PhotoRemoteDataSource {    
+public class PhotosRemoteDataSourceImpl: PhotosRemoteDataSource {    
     private let unsplashAPIService: UnsplashAPIService
     private let photoDataMapper: PhotoDataMapper
     
@@ -19,8 +19,8 @@ public class PhotoRemoteDataSourceImpl: PhotoRemoteDataSource {
         self.photoDataMapper = photoDataMapper
     }
     
-    public func fetchPhotoDetail(photoId: String) async throws -> PhotoDataModel {
-        let response = try await unsplashAPIService.fetchPhoto(id: photoId)
+    public func fetchPhotoDetails(id: String) async throws -> PhotoDataModel {
+        let response = try await unsplashAPIService.fetchPhoto(id: id)
         return photoDataMapper.map(from: response)
     }
     

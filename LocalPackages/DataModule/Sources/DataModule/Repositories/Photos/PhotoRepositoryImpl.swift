@@ -7,20 +7,20 @@
 
 import Entities
 
-public class PhotoRepositoryImpl: PhotoRepository {
-    private let remoteDataSource: PhotoRemoteDataSource
+public class PhotoRepositoryImpl: PhotosRepository {
+    private let remoteDataSource: PhotosRemoteDataSource
     private let photoDomainMapper: PhotoDomainMapper
     
     public init(
-        photoRemoteDataSource: PhotoRemoteDataSource,
+        photoRemoteDataSource: PhotosRemoteDataSource,
         photoDomainMapper: PhotoDomainMapper
     ) {
         self.remoteDataSource = photoRemoteDataSource
         self.photoDomainMapper = photoDomainMapper
     }
     
-    public func fetchPhotoDetail(photoId: String) async throws -> PhotoEntity {
-        let dataModel = try await remoteDataSource.fetchPhotoDetail(photoId: photoId)
+    public func fetchPhotoDetails(id: String) async throws -> PhotoEntity {
+        let dataModel = try await remoteDataSource.fetchPhotoDetails(id: id)
         return photoDomainMapper.map(from: dataModel)
     }
     

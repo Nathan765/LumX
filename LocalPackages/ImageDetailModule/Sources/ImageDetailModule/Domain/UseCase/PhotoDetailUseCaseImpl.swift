@@ -9,13 +9,13 @@ import Entities
 import DataModule
 
 public class PhotoDetailUseCaseImpl: PhotoDetailUseCase {
-    private let photoRepository: PhotoRepository
+    private let photoRepository: PhotosRepository
     
-    public init(photoRepository: PhotoRepository) {
+    public init(photoRepository: PhotosRepository) {
         self.photoRepository = photoRepository
     }
     
     public func execute(photoId: String) async throws -> PhotoEntity {
-        try await self.photoRepository.fetchPhotoDetail(photoId: photoId)
+        try await self.photoRepository.fetchPhotoDetails(id: photoId)
     }
 }

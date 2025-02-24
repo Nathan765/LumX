@@ -9,9 +9,9 @@ import Entities
 import DataModule
 
 public class PhotoListUseCaseImpl: PhotoListUseCase {
-    private let photoRepository: PhotoRepository
+    private let photoRepository: PhotosRepository
     
-    public init(photoRepository: PhotoRepository) {
+    public init(photoRepository: PhotosRepository) {
         self.photoRepository = photoRepository
     }
     
