@@ -18,7 +18,7 @@ public class ImageGridDelegate: NSObject, UICollectionViewDelegate {
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let selectedPhotoID = self.viewModel?.photos[indexPath.item].id else { return }
-        self.coordinator?.showDetail(for: selectedPhotoID)
+        self.coordinator?.showPhotoDetails(for: selectedPhotoID)
     }
     
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

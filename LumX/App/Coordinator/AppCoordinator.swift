@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
-import ImageDetailModule
 import ImageGridModule
+import PhotoDetailsFeature
 import NetworkingModule
 import Factory
 
 protocol AppCoordinatorProtocol: Coordinator, ImageGridCoordinator {
-    func showDetail(for photoId: String)
+    func showPhotoDetails(for photoId: String)
 }
 
 class AppCoordinator: AppCoordinatorProtocol {
@@ -34,9 +34,9 @@ class AppCoordinator: AppCoordinatorProtocol {
         navigationController.setViewControllers([imageGridViewController], animated: false)
     }
     
-    func showDetail(for photoId: String) {
-        let viewModel = Container.shared.imageDetailViewModel(photoId)
-        let detailView = ImageDetailView(viewModel: viewModel)
+    func showPhotoDetails(for photoId: String) {
+        let viewModel = Container.shared.photoDetailsViewModel(photoId)
+        let detailView = PhotoDetailsView(viewModel: viewModel)
         let hostingController = UIHostingController(rootView: detailView)
         navigationController.pushViewController(hostingController, animated: true)
     }

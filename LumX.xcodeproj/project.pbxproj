@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D80B2B0F2D6DCCF700597C8E /* PhotoDetailsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = D80B2B0E2D6DCCF700597C8E /* PhotoDetailsFeature */; };
 		D81302D62D6CABD900A04785 /* DataModule in Frameworks */ = {isa = PBXBuildFile; productRef = D81302D52D6CABD900A04785 /* DataModule */; };
 		D81883DB2D68D97000FB7CC8 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = D81883DA2D68D97000FB7CC8 /* Factory */; };
 		D81884A12D6B759900FB7CC8 /* Entities in Frameworks */ = {isa = PBXBuildFile; productRef = D81884A02D6B759900FB7CC8 /* Entities */; };
-		D89BEBFD2D68D40000CFFEFC /* ImageDetailModule in Frameworks */ = {isa = PBXBuildFile; productRef = D89BEBFC2D68D40000CFFEFC /* ImageDetailModule */; };
 		D89BEBFF2D68D40000CFFEFC /* ImageGridModule in Frameworks */ = {isa = PBXBuildFile; productRef = D89BEBFE2D68D40000CFFEFC /* ImageGridModule */; };
 		D89BEC012D68D40000CFFEFC /* NetworkingModule in Frameworks */ = {isa = PBXBuildFile; productRef = D89BEC002D68D40000CFFEFC /* NetworkingModule */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D80B2B0D2D6DCCE600597C8E /* PhotoDetailsFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PhotoDetailsFeature; path = LocalPackages/PhotoDetailsFeature; sourceTree = "<group>"; };
 		D81302D42D6CAB9F00A04785 /* DataModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DataModule; path = LocalPackages/DataModule; sourceTree = "<group>"; };
 		D81884A92D6BD69600FB7CC8 /* Entities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Entities; path = LocalPackages/Entities; sourceTree = "<group>"; };
-		D81884AA2D6BD69600FB7CC8 /* ImageDetailModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ImageDetailModule; path = LocalPackages/ImageDetailModule; sourceTree = "<group>"; };
 		D81884AB2D6BD69600FB7CC8 /* ImageGridModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ImageGridModule; path = LocalPackages/ImageGridModule; sourceTree = "<group>"; };
 		D81884AC2D6BD69600FB7CC8 /* NetworkingModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NetworkingModule; path = LocalPackages/NetworkingModule; sourceTree = "<group>"; };
 		D885A0F92D662DC4009A9714 /* LumX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LumX.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,7 +51,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D89BEBFF2D68D40000CFFEFC /* ImageGridModule in Frameworks */,
-				D89BEBFD2D68D40000CFFEFC /* ImageDetailModule in Frameworks */,
+				D80B2B0F2D6DCCF700597C8E /* PhotoDetailsFeature in Frameworks */,
 				D81302D62D6CABD900A04785 /* DataModule in Frameworks */,
 				D89BEC012D68D40000CFFEFC /* NetworkingModule in Frameworks */,
 				D81883DB2D68D97000FB7CC8 /* Factory in Frameworks */,
@@ -69,8 +69,8 @@
 				D89BEBFB2D68D40000CFFEFC /* Frameworks */,
 				D885A0FA2D662DC4009A9714 /* Products */,
 				D81884A92D6BD69600FB7CC8 /* Entities */,
-				D81884AA2D6BD69600FB7CC8 /* ImageDetailModule */,
 				D81884AB2D6BD69600FB7CC8 /* ImageGridModule */,
+				D80B2B0D2D6DCCE600597C8E /* PhotoDetailsFeature */,
 				D81302D42D6CAB9F00A04785 /* DataModule */,
 				D81884AC2D6BD69600FB7CC8 /* NetworkingModule */,
 			);
@@ -111,12 +111,12 @@
 			);
 			name = LumX;
 			packageProductDependencies = (
-				D89BEBFC2D68D40000CFFEFC /* ImageDetailModule */,
 				D89BEBFE2D68D40000CFFEFC /* ImageGridModule */,
 				D89BEC002D68D40000CFFEFC /* NetworkingModule */,
 				D81883DA2D68D97000FB7CC8 /* Factory */,
 				D81884A02D6B759900FB7CC8 /* Entities */,
 				D81302D52D6CABD900A04785 /* DataModule */,
+				D80B2B0E2D6DCCF700597C8E /* PhotoDetailsFeature */,
 			);
 			productName = LumX;
 			productReference = D885A0F92D662DC4009A9714 /* LumX.app */;
@@ -400,6 +400,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D80B2B0E2D6DCCF700597C8E /* PhotoDetailsFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PhotoDetailsFeature;
+		};
 		D81302D52D6CABD900A04785 /* DataModule */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DataModule;
@@ -412,10 +416,6 @@
 		D81884A02D6B759900FB7CC8 /* Entities */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Entities;
-		};
-		D89BEBFC2D68D40000CFFEFC /* ImageDetailModule */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ImageDetailModule;
 		};
 		D89BEBFE2D68D40000CFFEFC /* ImageGridModule */ = {
 			isa = XCSwiftPackageProductDependency;
