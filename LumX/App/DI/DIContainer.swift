@@ -6,23 +6,47 @@
 //
 
 import Factory
+import DataModule
 import NetworkingModule
 import ImageGridModule
+import ImageDetailModule
 
 extension Container { // WIP rework
-    var unsplashNetworkService: Factory<UnsplashNetworkService> {
-        self { UnsplashNetworkServiceImpl() }
+    var networkService: Factory<NetworkService> {
+        self { URLSessionNetworkServiceImpl() }
             .shared
     }
     
-    var photoRemoteDataSource: Factory<PhotoRemoteDataSource> {
-        self { PhotoRemoteDataSourceImpl(unsplashNetworkService: self.unsplashNetworkService()) }
+    var unsplashAPIService: Factory<UnsplashAPIServiceImpl> {
+        self { UnsplashAPIServiceImpl(networkService: self.networkService()) }
             .shared
     }
     
-    var photoRepository: Factory<PhotoRepository> {
-        self { PhotoRepositoryImpl(photoRemoteDataSource: self.photoRemoteDataSource()) }
+    var photoDataMapper: Factory<PhotoDataMapper> {
+        self { PhotoDataMapperImpl() }
             .shared
+    }
+    
+    var photoRemoteDataSource: Factory<PhotosRemoteDataSource> {
+        self { PhotosRemoteDataSourceImpl(
+            unsplashAPIService: self.unsplashAPIService(),
+            photoDataMapper: self.photoDataMapper()
+            
+        ) }
+        .shared
+    }
+    
+    var photoDomainMapper: Factory<PhotoDomainMapper> {
+        self { PhotoDomainMapperImpl() }
+            .shared
+    }
+    
+    var photoRepository: Factory<PhotosRepository> {
+        self { PhotoRepositoryImpl(
+            photoRemoteDataSource: self.photoRemoteDataSource(),
+            photoDomainMapper: self.photoDomainMapper()
+        ) }
+        .shared
     }
     
     var photoListUseCase: Factory<PhotoListUseCase> {
@@ -30,7 +54,32 @@ extension Container { // WIP rework
             .shared
     }
     
+    var photoDetailUseCase: Factory<PhotoDetailUseCase> {
+        self { PhotoDetailUseCaseImpl(photoRepository: self.photoRepository()) }
+            .shared
+    }
+    
+    var photoDownloadUseCase: Factory<PhotoDownloadUseCase> {
+        self { PhotoDownloadUseCaseImpl(unsplashAPIService: self.unsplashAPIService()) }
+            .shared
+    }
+    
+    var imageCellViewModelProvider: (PhotoUIModel) -> ImageCellViewModel {
+        { ImageCellViewModel(
+            photo: $0,
+            photoDownloadUseCase: self.photoDownloadUseCase()
+        ) }
+    }
+    
+    var photoUIMapper: Factory<PhotoUIMapper> {
+        self { PhotoUIMapperImpl() }
+            .shared
+    }
+    
     var imageGridViewModel: Factory<ImageGridViewModel> {
-        self { ImageGridViewModel(photoListUseCase: self.photoListUseCase()) }
+        self { ImageGridViewModel(
+            photoListUseCase: self.photoListUseCase(),
+            photoUIMapper: self.photoUIMapper()
+        ) }
     }
 }

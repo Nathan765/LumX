@@ -11,10 +11,11 @@ import NetworkingModule
 import ImageDetailModule
 import ImageGridModule
 
-extension AppCoordinator: ImageGridCoordinator {}
+protocol AppCoordinatorProtocol: Coordinator, ImageGridCoordinator {
+    func showDetail(for photoId: String)
+}
 
-class AppCoordinator: Coordinator {
-    @Injected(\.unsplashNetworkService) private var service
+class AppCoordinator: AppCoordinatorProtocol {
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -22,22 +23,19 @@ class AppCoordinator: Coordinator {
     }
 
     func start() {
-        let imageGridVC = createImageGridViewController()
-        navigationController.setViewControllers([imageGridVC], animated: false)
+        showImageGrid()
     }
     
-    private func createImageGridViewController() -> ImageGridViewController {        
-        let viewModel = Container.shared.imageGridViewModel()
-        let vc = ImageGridViewController(viewModel: viewModel)
-        vc.coordinator = self
-        return vc
+    private func showImageGrid() {
+        let imageGridViewController = ImageGridViewController(
+            coordinator: self,
+            imageGridViewModel: Container.shared.imageGridViewModel(),
+            imageCellViewModelProvider: Container.shared.imageCellViewModelProvider)
+        navigationController.setViewControllers([imageGridViewController], animated: false)
     }
     
     func showDetail(for photoId: String) { // TODO: Factory --> DI
-        let service = UnsplashNetworkServiceImpl()
-        let photoDetailRemoteDataSource = PhotoDetailRemoteDataSourceImpl(unsplashNetworkService: service)
-        let photoDetailRepository = PhotoDetailRepositoryImpl(photoDetailRemoteDataSource: photoDetailRemoteDataSource)
-        let photoDetailUseCase = PhotoDetailUseCaseImpl(photoDetailRepository: photoDetailRepository)
+        let photoDetailUseCase =  Container.shared.photoDetailUseCase()
         let viewModel = ImageDetailViewModel(photoDetailUseCase: photoDetailUseCase, photoId: photoId)
         let detailView = ImageDetailView(viewModel: viewModel)
         let hostingController = UIHostingController(rootView: detailView)
