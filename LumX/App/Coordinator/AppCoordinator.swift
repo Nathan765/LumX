@@ -6,12 +6,12 @@
 //
 
 import SwiftUI
-import ImageGridModule
+import PhotoGalleryFeature
 import PhotoDetailsFeature
 import NetworkingModule
 import Factory
 
-protocol AppCoordinatorProtocol: Coordinator, ImageGridCoordinator {
+protocol AppCoordinatorProtocol: Coordinator, PhotoGalleryCoordinator {
     func showPhotoDetails(for photoId: String)
 }
 
@@ -27,7 +27,7 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     private func showImageGrid() {
-        let imageGridViewController = ImageGridViewController(
+        let imageGridViewController = PhotoGalleryViewController(
             coordinator: self,
             imageGridViewModel: Container.shared.imageGridViewModel(),
             imageCellViewModelProvider: Container.shared.imageCellViewModelProvider)
