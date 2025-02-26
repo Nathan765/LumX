@@ -5,16 +5,17 @@
 //  Created by Nathan Stéphant on 19/02/2025.
 //
 
-import Factory
 import SwiftUI
+import PhotoGalleryFeature
+import PhotoDetailsFeature
 import NetworkingModule
-import ImageDetailModule
-import ImageGridModule
+import Factory
 
-extension AppCoordinator: ImageGridCoordinator {}
+protocol AppCoordinatorProtocol: Coordinator, PhotoGalleryCoordinator {
+    func showPhotoDetails(for photoId: String)
+}
 
-class AppCoordinator: Coordinator {
-    @Injected(\.unsplashNetworkService) private var service
+class AppCoordinator: AppCoordinatorProtocol {
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -22,24 +23,20 @@ class AppCoordinator: Coordinator {
     }
 
     func start() {
-        let imageGridVC = createImageGridViewController()
-        navigationController.setViewControllers([imageGridVC], animated: false)
+        showImageGrid()
     }
     
-    private func createImageGridViewController() -> ImageGridViewController {        
-        let viewModel = Container.shared.imageGridViewModel()
-        let vc = ImageGridViewController(viewModel: viewModel)
-        vc.coordinator = self
-        return vc
+    private func showImageGrid() {
+        let imageGridViewController = PhotoGalleryViewController(
+            coordinator: self,
+            imageGridViewModel: Container.shared.imageGridViewModel(),
+            imageCellViewModelProvider: Container.shared.imageCellViewModelProvider)
+        navigationController.setViewControllers([imageGridViewController], animated: false)
     }
     
-    func showDetail(for photoId: String) { // TODO: Factory --> DI
-        let service = UnsplashNetworkServiceImpl()
-        let photoDetailRemoteDataSource = PhotoDetailRemoteDataSourceImpl(unsplashNetworkService: service)
-        let photoDetailRepository = PhotoDetailRepositoryImpl(photoDetailRemoteDataSource: photoDetailRemoteDataSource)
-        let photoDetailUseCase = PhotoDetailUseCaseImpl(photoDetailRepository: photoDetailRepository)
-        let viewModel = ImageDetailViewModel(photoDetailUseCase: photoDetailUseCase, photoId: photoId)
-        let detailView = ImageDetailView(viewModel: viewModel)
+    func showPhotoDetails(for photoId: String) {
+        let viewModel = Container.shared.photoDetailsViewModel(photoId)
+        let detailView = PhotoDetailsView(viewModel: viewModel)
         let hostingController = UIHostingController(rootView: detailView)
         navigationController.pushViewController(hostingController, animated: true)
     }

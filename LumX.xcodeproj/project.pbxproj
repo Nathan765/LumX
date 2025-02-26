@@ -7,18 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D80B2B0F2D6DCCF700597C8E /* PhotoDetailsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = D80B2B0E2D6DCCF700597C8E /* PhotoDetailsFeature */; };
+		D80B2B122D6DD01A00597C8E /* PhotoGalleryFeature in Frameworks */ = {isa = PBXBuildFile; productRef = D80B2B112D6DD01A00597C8E /* PhotoGalleryFeature */; };
+		D81302D62D6CABD900A04785 /* DataModule in Frameworks */ = {isa = PBXBuildFile; productRef = D81302D52D6CABD900A04785 /* DataModule */; };
 		D81883DB2D68D97000FB7CC8 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = D81883DA2D68D97000FB7CC8 /* Factory */; };
-		D885A6772D6793AC009A9714 /* NetworkingModule in Resources */ = {isa = PBXBuildFile; fileRef = D885A6762D6793AC009A9714 /* NetworkingModule */; };
-		D89BEBFD2D68D40000CFFEFC /* ImageDetailModule in Frameworks */ = {isa = PBXBuildFile; productRef = D89BEBFC2D68D40000CFFEFC /* ImageDetailModule */; };
-		D89BEBFF2D68D40000CFFEFC /* ImageGridModule in Frameworks */ = {isa = PBXBuildFile; productRef = D89BEBFE2D68D40000CFFEFC /* ImageGridModule */; };
+		D81884A12D6B759900FB7CC8 /* Entities in Frameworks */ = {isa = PBXBuildFile; productRef = D81884A02D6B759900FB7CC8 /* Entities */; };
 		D89BEC012D68D40000CFFEFC /* NetworkingModule in Frameworks */ = {isa = PBXBuildFile; productRef = D89BEC002D68D40000CFFEFC /* NetworkingModule */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D801287A2D68938F00CE58EF /* ImageGridModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ImageGridModule; sourceTree = "<group>"; };
-		D86E26842D687FD600AE4C1B /* ImageDetailModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ImageDetailModule; sourceTree = "<group>"; };
+		D80B2B0D2D6DCCE600597C8E /* PhotoDetailsFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PhotoDetailsFeature; path = LocalPackages/PhotoDetailsFeature; sourceTree = "<group>"; };
+		D80B2B102D6DD00800597C8E /* PhotoGalleryFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PhotoGalleryFeature; path = LocalPackages/PhotoGalleryFeature; sourceTree = "<group>"; };
+		D81302D42D6CAB9F00A04785 /* DataModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DataModule; path = LocalPackages/DataModule; sourceTree = "<group>"; };
+		D81884A92D6BD69600FB7CC8 /* Entities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Entities; path = LocalPackages/Entities; sourceTree = "<group>"; };
+		D81884AC2D6BD69600FB7CC8 /* NetworkingModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NetworkingModule; path = LocalPackages/NetworkingModule; sourceTree = "<group>"; };
 		D885A0F92D662DC4009A9714 /* LumX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LumX.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D885A6762D6793AC009A9714 /* NetworkingModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkingModule; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -47,10 +50,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D89BEBFF2D68D40000CFFEFC /* ImageGridModule in Frameworks */,
-				D89BEBFD2D68D40000CFFEFC /* ImageDetailModule in Frameworks */,
+				D80B2B0F2D6DCCF700597C8E /* PhotoDetailsFeature in Frameworks */,
+				D81302D62D6CABD900A04785 /* DataModule in Frameworks */,
 				D89BEC012D68D40000CFFEFC /* NetworkingModule in Frameworks */,
+				D80B2B122D6DD01A00597C8E /* PhotoGalleryFeature in Frameworks */,
 				D81883DB2D68D97000FB7CC8 /* Factory in Frameworks */,
+				D81884A12D6B759900FB7CC8 /* Entities in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +65,14 @@
 		D885A0F02D662DC4009A9714 = {
 			isa = PBXGroup;
 			children = (
-				D801287A2D68938F00CE58EF /* ImageGridModule */,
-				D86E26842D687FD600AE4C1B /* ImageDetailModule */,
-				D885A6762D6793AC009A9714 /* NetworkingModule */,
 				D885A0FB2D662DC4009A9714 /* LumX */,
 				D89BEBFB2D68D40000CFFEFC /* Frameworks */,
 				D885A0FA2D662DC4009A9714 /* Products */,
+				D81884A92D6BD69600FB7CC8 /* Entities */,
+				D80B2B102D6DD00800597C8E /* PhotoGalleryFeature */,
+				D80B2B0D2D6DCCE600597C8E /* PhotoDetailsFeature */,
+				D81302D42D6CAB9F00A04785 /* DataModule */,
+				D81884AC2D6BD69600FB7CC8 /* NetworkingModule */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,10 +111,12 @@
 			);
 			name = LumX;
 			packageProductDependencies = (
-				D89BEBFC2D68D40000CFFEFC /* ImageDetailModule */,
-				D89BEBFE2D68D40000CFFEFC /* ImageGridModule */,
 				D89BEC002D68D40000CFFEFC /* NetworkingModule */,
 				D81883DA2D68D97000FB7CC8 /* Factory */,
+				D81884A02D6B759900FB7CC8 /* Entities */,
+				D81302D52D6CABD900A04785 /* DataModule */,
+				D80B2B0E2D6DCCF700597C8E /* PhotoDetailsFeature */,
+				D80B2B112D6DD01A00597C8E /* PhotoGalleryFeature */,
 			);
 			productName = LumX;
 			productReference = D885A0F92D662DC4009A9714 /* LumX.app */;
@@ -155,7 +164,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D885A6772D6793AC009A9714 /* NetworkingModule in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,18 +400,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D80B2B0E2D6DCCF700597C8E /* PhotoDetailsFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PhotoDetailsFeature;
+		};
+		D80B2B112D6DD01A00597C8E /* PhotoGalleryFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PhotoGalleryFeature;
+		};
+		D81302D52D6CABD900A04785 /* DataModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DataModule;
+		};
 		D81883DA2D68D97000FB7CC8 /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D81883D92D68D96F00FB7CC8 /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = Factory;
 		};
-		D89BEBFC2D68D40000CFFEFC /* ImageDetailModule */ = {
+		D81884A02D6B759900FB7CC8 /* Entities */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = ImageDetailModule;
-		};
-		D89BEBFE2D68D40000CFFEFC /* ImageGridModule */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ImageGridModule;
+			productName = Entities;
 		};
 		D89BEC002D68D40000CFFEFC /* NetworkingModule */ = {
 			isa = XCSwiftPackageProductDependency;
